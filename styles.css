@@ -154,6 +154,8 @@ mark{color:white;background:var(--cobalt);border-radius:4px;padding:0 3px;box-de
 .exercise-line{font-size:27px;line-height:1.85;letter-spacing:.1px}
 .exercise-line ruby,.mcq-sentence ruby,.choice-grid ruby,.mcq-answer ruby{ruby-position:over}
 .exercise-line rt,.mcq-sentence rt,.choice-grid rt,.mcq-answer rt{font-size:.46em;font-weight:400;letter-spacing:0;color:#777089}
+.practice-teorimasu .mcq-card rt{opacity:1;transition:opacity .32s ease}
+.practice-teorimasu .mcq-card:not(.furigana-visible) rt{opacity:0}
 .answer-slot{display:inline-block;vertical-align:baseline;min-width:216px;min-height:1.42em;height:auto;margin:0 4px;line-height:1.35;text-align:center;border-bottom:1.5px solid #aaa3bd}
 .answer-slot.is-filled{border-bottom-color:transparent}
 .answer-value{display:inline-block;width:max-content;max-width:100%;color:var(--ink);background:var(--citron);padding:2px 8px;line-height:1.35;border-radius:5px;box-shadow:inset 0 -2px 0 #c4cf8d}
