@@ -74,6 +74,7 @@
     practiceAnswers(slide).forEach(answer => {
       answer.hidden = true;
       answer.classList.remove('answer-revealing');
+      answer.closest('.answer-slot')?.classList.remove('is-filled');
     });
     practiceMeanings(slide).forEach(meaning => {
       meaning.hidden = true;
@@ -93,6 +94,7 @@
     if (expandedCard && !expandedCard.contains(answer)) closeExpandedCard({ restoreFocus: false });
     answers.forEach(item => item.classList.remove('answer-revealing'));
     answer.hidden = false;
+    answer.closest('.answer-slot')?.classList.add('is-filled');
     void answer.offsetWidth;
     answer.classList.add('answer-revealing');
     slide.classList.add('answers-visible');
@@ -136,6 +138,7 @@
     } else {
       answers[index].hidden = true;
       answers[index].classList.remove('answer-revealing');
+      answers[index].closest('.answer-slot')?.classList.remove('is-filled');
       if (!answers.some(answer => !answer.hidden)) slide.classList.remove('answers-visible');
       announcer.textContent = 'Jawaban nomor ' + (index + 1) + ' disembunyikan.';
     }
