@@ -31,50 +31,120 @@
     if (status) status.textContent = message;
   }
 
+  function practiceAnswers(slide) {
+    return [...slide.querySelectorAll('.answer-value')];
+  }
+
+  function practiceMeanings(slide) {
+    return [...slide.querySelectorAll('.meaning-reveal li')];
+  }
+
+  function practiceItems(slide) {
+    return [...slide.querySelectorAll('.exercise-row, .mcq-card')];
+  }
+
+  function practiceTotal(slide) {
+    return Math.min(practiceAnswers(slide).length, practiceMeanings(slide).length);
+  }
+
+  function focusPracticeItem(slide, index) {
+    practiceItems(slide).forEach((item, itemIndex) => {
+      item.classList.toggle('practice-item-current', itemIndex === index);
+    });
+  }
+
+  function updatePracticeStatus(slide) {
+    const step = practiceStates.get(slide) || 0;
+    const total = practiceTotal(slide);
+    if (step >= total * 2) {
+      practiceStatus(slide, 'Arti nomor ' + total + ' ditampilkan. Tekan next untuk lanjut.');
+    } else if (step % 2 === 0) {
+      practiceStatus(slide, 'Tekan next untuk menampilkan jawaban nomor ' + (step / 2 + 1) + '.');
+    } else {
+      practiceStatus(slide, 'Jawaban nomor ' + (Math.floor(step / 2) + 1) + ' ditampilkan. Tekan next untuk melihat artinya.');
+    }
+  }
+
   function resetPractice(slide, { announce = false } = {}) {
     practiceStates.set(slide, 0);
     slide.classList.remove('answers-visible', 'meanings-visible');
-    slide.querySelectorAll('.answer-value').forEach(answer => { answer.hidden = true; });
+    practiceAnswers(slide).forEach(answer => {
+      answer.hidden = true;
+      answer.classList.remove('answer-revealing');
+    });
     slide.querySelectorAll('.meaning-reveal').forEach(meaning => { meaning.hidden = true; });
-    practiceStatus(slide, 'Tekan next untuk menampilkan jawaban.');
+    practiceMeanings(slide).forEach(meaning => {
+      meaning.hidden = true;
+      meaning.classList.remove('meaning-revealing');
+    });
+    focusPracticeItem(slide, 0);
+    updatePracticeStatus(slide);
     if (announce) announcer.textContent = 'Jawaban dan arti latihan disembunyikan.';
   }
 
-  function revealPracticeAnswers(slide) {
-    if (practiceStates.get(slide) !== 0) return;
-    practiceStates.set(slide, 1);
-    slide.classList.remove('answers-visible');
-    slide.querySelectorAll('.answer-value').forEach(answer => { answer.hidden = false; });
-    void slide.offsetWidth;
+  function revealPracticeAnswer(slide) {
+    const step = practiceStates.get(slide) || 0;
+    const index = Math.floor(step / 2);
+    const answers = practiceAnswers(slide);
+    const answer = answers[index];
+    if (!answer || step % 2 !== 0) return;
+    answers.forEach(item => item.classList.remove('answer-revealing'));
+    answer.hidden = false;
+    void answer.offsetWidth;
+    answer.classList.add('answer-revealing');
     slide.classList.add('answers-visible');
-    practiceStatus(slide, 'Jawaban ditampilkan. Tekan next untuk melihat arti.');
-    announcer.textContent = 'Jawaban latihan ditampilkan.';
+    practiceStates.set(slide, step + 1);
+    focusPracticeItem(slide, index);
+    updatePracticeStatus(slide);
+    announcer.textContent = 'Jawaban nomor ' + (index + 1) + ' ditampilkan.';
     syncPracticeControls();
   }
 
-  function revealPracticeMeanings(slide) {
-    if (practiceStates.get(slide) !== 1) return;
-    practiceStates.set(slide, 2);
-    slide.classList.remove('meanings-visible');
-    slide.querySelectorAll('.meaning-reveal').forEach(meaning => { meaning.hidden = false; });
-    void slide.offsetWidth;
-    slide.classList.add('meanings-visible');
-    practiceStatus(slide, 'Arti ditampilkan. Tekan next untuk lanjut.');
-    announcer.textContent = 'Arti kalimat latihan ditampilkan.';
+  function revealPracticeMeaning(slide) {
+    const step = practiceStates.get(slide) || 0;
+    const index = Math.floor(step / 2);
+    const meanings = practiceMeanings(slide);
+    const meaning = meanings[index];
+    if (!meaning || step % 2 !== 1) return;
+    const container = meaning.closest('.meaning-reveal');
+    meanings.forEach(item => item.classList.remove('meaning-revealing'));
+    const firstMeaning = container.hidden;
+    container.hidden = false;
+    meaning.hidden = false;
+    void meaning.offsetWidth;
+    if (firstMeaning) slide.classList.add('meanings-visible');
+    meaning.classList.add('meaning-revealing');
+    practiceStates.set(slide, step + 1);
+    focusPracticeItem(slide, index);
+    updatePracticeStatus(slide);
+    announcer.textContent = 'Arti nomor ' + (index + 1) + ' ditampilkan.';
     syncPracticeControls();
   }
 
   function hidePracticeStep(slide) {
-    const state = practiceStates.get(slide) || 0;
-    if (state === 2) {
-      practiceStates.set(slide, 1);
-      slide.classList.remove('meanings-visible');
-      slide.querySelectorAll('.meaning-reveal').forEach(meaning => { meaning.hidden = true; });
-      practiceStatus(slide, 'Jawaban ditampilkan. Tekan next untuk melihat arti.');
-      announcer.textContent = 'Arti kalimat latihan disembunyikan.';
-    } else if (state === 1) {
-      resetPractice(slide, { announce: true });
+    const step = practiceStates.get(slide) || 0;
+    if (step <= 0) return;
+    const answers = practiceAnswers(slide);
+    const meanings = practiceMeanings(slide);
+    const lastWasMeaning = step % 2 === 0;
+    const index = lastWasMeaning ? step / 2 - 1 : Math.floor(step / 2);
+    if (lastWasMeaning) {
+      meanings[index].hidden = true;
+      meanings[index].classList.remove('meaning-revealing');
+      if (!meanings.some(meaning => !meaning.hidden)) {
+        slide.querySelectorAll('.meaning-reveal').forEach(container => { container.hidden = true; });
+        slide.classList.remove('meanings-visible');
+      }
+      announcer.textContent = 'Arti nomor ' + (index + 1) + ' disembunyikan.';
+    } else {
+      answers[index].hidden = true;
+      answers[index].classList.remove('answer-revealing');
+      if (!answers.some(answer => !answer.hidden)) slide.classList.remove('answers-visible');
+      announcer.textContent = 'Jawaban nomor ' + (index + 1) + ' disembunyikan.';
     }
+    practiceStates.set(slide, step - 1);
+    focusPracticeItem(slide, Math.max(0, index));
+    updatePracticeStatus(slide);
     syncPracticeControls();
   }
 
@@ -130,24 +200,35 @@
       nextButton.title = 'Slide berikutnya';
       return;
     }
-    const state = practiceStates.get(slide) || 0;
-    const previousLabels = ['Slide sebelumnya', 'Sembunyikan jawaban latihan', 'Sembunyikan arti latihan'];
-    const nextLabels = ['Tampilkan jawaban latihan', 'Tampilkan arti kalimat', 'Slide berikutnya'];
-    previousButton.setAttribute('aria-label', previousLabels[state]);
-    nextButton.setAttribute('aria-label', nextLabels[state]);
-    nextButton.title = nextLabels[state];
+    const step = practiceStates.get(slide) || 0;
+    const total = practiceTotal(slide);
+    const itemNumber = Math.floor(step / 2) + 1;
+    let nextLabel = 'Slide berikutnya';
+    if (step < total * 2) {
+      nextLabel = step % 2 === 0
+        ? 'Tampilkan jawaban nomor ' + itemNumber
+        : 'Tampilkan arti nomor ' + itemNumber;
+    }
+    let previousLabel = 'Slide sebelumnya';
+    if (step > 0) {
+      const previousNumber = step % 2 === 0 ? step / 2 : Math.floor(step / 2) + 1;
+      previousLabel = step % 2 === 0
+        ? 'Sembunyikan arti nomor ' + previousNumber
+        : 'Sembunyikan jawaban nomor ' + previousNumber;
+    }
+    previousButton.setAttribute('aria-label', previousLabel);
+    nextButton.setAttribute('aria-label', nextLabel);
+    nextButton.title = nextLabel;
   }
 
   function advancePresentation() {
     const practice = getCurrentPractice();
     if (practice) {
-      const state = practiceStates.get(practice) || 0;
-      if (state === 0) {
-        revealPracticeAnswers(practice);
-        return;
-      }
-      if (state === 1) {
-        revealPracticeMeanings(practice);
+      const step = practiceStates.get(practice) || 0;
+      const totalSteps = practiceTotal(practice) * 2;
+      if (step < totalSteps) {
+        if (step % 2 === 0) revealPracticeAnswer(practice);
+        else revealPracticeMeaning(practice);
         return;
       }
     }
