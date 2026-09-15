@@ -36,7 +36,7 @@
   }
 
   function practiceMeanings(slide) {
-    return [...slide.querySelectorAll('.meaning-reveal li')];
+    return [...slide.querySelectorAll('.meaning-item')];
   }
 
   function practiceItems(slide) {
@@ -72,7 +72,6 @@
       answer.hidden = true;
       answer.classList.remove('answer-revealing');
     });
-    slide.querySelectorAll('.meaning-reveal').forEach(meaning => { meaning.hidden = true; });
     practiceMeanings(slide).forEach(meaning => {
       meaning.hidden = true;
       meaning.classList.remove('meaning-revealing');
@@ -106,14 +105,11 @@
     const meanings = practiceMeanings(slide);
     const meaning = meanings[index];
     if (!meaning || step % 2 !== 1) return;
-    const container = meaning.closest('.meaning-reveal');
     meanings.forEach(item => item.classList.remove('meaning-revealing'));
-    const firstMeaning = container.hidden;
-    container.hidden = false;
     meaning.hidden = false;
     void meaning.offsetWidth;
-    if (firstMeaning) slide.classList.add('meanings-visible');
     meaning.classList.add('meaning-revealing');
+    slide.classList.add('meanings-visible');
     practiceStates.set(slide, step + 1);
     focusPracticeItem(slide, index);
     updatePracticeStatus(slide);
@@ -131,10 +127,7 @@
     if (lastWasMeaning) {
       meanings[index].hidden = true;
       meanings[index].classList.remove('meaning-revealing');
-      if (!meanings.some(meaning => !meaning.hidden)) {
-        slide.querySelectorAll('.meaning-reveal').forEach(container => { container.hidden = true; });
-        slide.classList.remove('meanings-visible');
-      }
+      if (!meanings.some(meaning => !meaning.hidden)) slide.classList.remove('meanings-visible');
       announcer.textContent = 'Arti nomor ' + (index + 1) + ' disembunyikan.';
     } else {
       answers[index].hidden = true;
