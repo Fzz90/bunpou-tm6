@@ -10,8 +10,11 @@
   const fullscreenButton = document.querySelector('#fullscreen-button');
   const practiceSlides = [...document.querySelectorAll('.slide.practice')];
   const practiceStates = new Map(practiceSlides.map(slide => [slide, 0]));
+  const expandableCards = [...document.querySelectorAll('.mcq-card')];
+  const cardBackdrop = document.querySelector('.card-backdrop');
   const mobile = window.matchMedia('(max-width: 900px)');
   let currentSlide = 0;
+  let expandedCard = null;
   let transitionTimer;
   let toastTimer;
 
@@ -87,6 +90,7 @@
     const answers = practiceAnswers(slide);
     const answer = answers[index];
     if (!answer || step % 2 !== 0) return;
+    if (expandedCard && !expandedCard.contains(answer)) closeExpandedCard({ restoreFocus: false });
     answers.forEach(item => item.classList.remove('answer-revealing'));
     answer.hidden = false;
     void answer.offsetWidth;
@@ -146,10 +150,41 @@
     return slide && slide.classList.contains('practice') ? slide : null;
   }
 
+
+  function openExpandedCard(card) {
+    if (expandedCard === card) return;
+    closeExpandedCard({ restoreFocus: false });
+    expandedCard = card;
+    card.classList.add('is-expanded');
+    card.setAttribute('aria-expanded', 'true');
+    card.setAttribute('aria-label', 'Soal nomor ' + card.dataset.cardNumber + ' diperbesar');
+    card.closest('.practice-teorimasu').classList.add('card-expanded');
+    cardBackdrop.hidden = false;
+    document.body.classList.add('card-modal-open');
+    card.scrollTop = 0;
+    card.focus({ preventScroll: true });
+    announcer.textContent = 'Soal nomor ' + card.dataset.cardNumber + ' diperbesar. Tekan Escape untuk menutup.';
+  }
+
+  function closeExpandedCard({ restoreFocus = true } = {}) {
+    if (!expandedCard) return;
+    const card = expandedCard;
+    expandedCard = null;
+    card.classList.remove('is-expanded');
+    card.setAttribute('aria-expanded', 'false');
+    card.setAttribute('aria-label', 'Perbesar soal nomor ' + card.dataset.cardNumber);
+    card.closest('.practice-teorimasu').classList.remove('card-expanded');
+    cardBackdrop.hidden = true;
+    document.body.classList.remove('card-modal-open');
+    if (restoreFocus) card.focus({ preventScroll: true });
+    announcer.textContent = 'Tampilan soal ditutup.';
+  }
+
   function goToSlide(index, { updateHash = true, focus = false, animate = true } = {}) {
     if (!Number.isInteger(index) || index < 0 || index >= slides.length) return;
     const fromSlide = currentSlide;
     const changed = currentSlide !== index;
+    if (changed && expandedCard) closeExpandedCard({ restoreFocus: false });
     const focusIsInSlide = slides.some(slide => slide.contains(document.activeElement));
     if (changed && slides[index].classList.contains('practice') && fromSlide < index) {
       resetPractice(slides[index]);
@@ -240,6 +275,26 @@
   document.querySelectorAll('[data-go]').forEach(button => {
     button.addEventListener('click', () => goToSlide(Number(button.dataset.go), { focus: true }));
   });
+
+  expandableCards.forEach(card => {
+    card.addEventListener('click', event => {
+      if (event.target.closest('.card-close')) {
+        event.stopPropagation();
+        closeExpandedCard();
+        return;
+      }
+      if (!card.classList.contains('is-expanded')) openExpandedCard(card);
+    });
+    card.addEventListener('keydown', event => {
+      if (event.target.closest('.card-close') || card.classList.contains('is-expanded')) return;
+      if (event.key === 'Enter' || event.key === ' ') {
+        event.preventDefault();
+        openExpandedCard(card);
+      }
+    });
+  });
+  cardBackdrop.addEventListener('click', () => closeExpandedCard());
+
   document.querySelector('.brand').addEventListener('click', event => {
     event.preventDefault();
     goToSlide(0, { focus: true });
@@ -276,6 +331,11 @@
   });
   document.addEventListener('keydown', event => {
     if (event.defaultPrevented || event.altKey || event.ctrlKey || event.metaKey) return;
+    if (event.key === 'Escape' && expandedCard) {
+      event.preventDefault();
+      closeExpandedCard();
+      return;
+    }
     const target = event.target;
     if (target.closest('input, textarea, select, [contenteditable="true"]')) return;
     if (['ArrowRight', 'ArrowDown', 'PageDown'].includes(event.key)) {
