@@ -176,11 +176,12 @@ mark{color:white;background:var(--cobalt);border-radius:4px;padding:0 3px;box-de
 .practice-teorimasu .practice-topic{min-height:39px;font-size:21px}
 .practice-teorimasu .practice-instruction{font-size:14px;margin-top:3px}
 .mcq-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-top:12px}
-.mcq-card{min-width:0;min-height:398px;padding:15px 16px 13px;border-radius:16px;background:white;border-top:4px solid var(--cobalt);box-shadow:0 14px 28px -27px #282248;display:flex;flex-direction:column}
-.mcq-card-heading{display:flex;align-items:center;gap:10px}
-.mcq-card-heading>span{width:27px;height:27px;border-radius:50%;display:grid;place-items:center;background:#deddff;color:var(--cobalt);font:700 15px var(--jp)}
-.mcq-card-heading h3{font-size:15px;font-weight:650}
-.mcq-card-heading small{display:block;margin-top:1px;color:var(--muted);font-size:11px;font-weight:450}
+.mcq-card{--card-stroke-angle:0deg;position:relative;isolation:isolate;min-width:0;min-height:398px;padding:18px 16px 13px;border-radius:16px;background:white;border-top:4px solid var(--cobalt);box-shadow:0 14px 28px -27px #282248;display:flex;flex-direction:column;cursor:zoom-in;outline:none}
+.mcq-card::before{content:"";position:absolute;z-index:2;inset:-2px;border-radius:18px;padding:2px;background:conic-gradient(from var(--card-stroke-angle),transparent 0 58%,#7776e8 72%,#c4d06f 84%,transparent 96%);opacity:0;pointer-events:none;-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);mask-composite:exclude}
+.mcq-card:hover::before,.mcq-card:focus-visible::before{opacity:1;animation:card-stroke-move 1.7s linear infinite}
+.mcq-card:focus-visible{box-shadow:0 0 0 4px #4444de25,0 16px 30px -22px #4444de70}
+@property --card-stroke-angle{syntax:"<angle>";initial-value:0deg;inherits:false}
+@keyframes card-stroke-move{to{--card-stroke-angle:360deg}}
 .mcq-sentence{min-height:110px;margin-top:11px;padding-bottom:10px;border-bottom:1px solid #ebe8f1;font-size:17px;line-height:1.85;font-weight:500;letter-spacing:-.2px}
 .choice-groups{display:grid;gap:7px;margin-top:8px}
 .choice-group{display:grid;grid-template-columns:22px minmax(0,1fr);gap:4px;font-size:14px;line-height:1.55}
@@ -190,6 +191,21 @@ mark{color:white;background:var(--cobalt);border-radius:4px;padding:0 3px;box-de
 .mcq-answer{display:flex;align-items:flex-end;min-height:47px;margin-top:auto;font-size:13px;line-height:1.55}
 .mcq-answer .answer-value{display:block;width:100%;max-width:none;padding:5px 7px;background:#deddff;color:var(--cobalt);box-shadow:inset 0 -2px 0 #b7b6ef;font-weight:650}
 .practice-teorimasu>.answer-key{min-height:31px;padding-top:5px}
+.card-backdrop{position:absolute;z-index:30;inset:0;width:100%;height:100%;border:0;border-radius:0;background:#29274342;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);cursor:zoom-out}
+.card-backdrop[hidden]{display:none!important}
+.card-close{display:none;position:absolute;z-index:4;top:17px;right:18px;width:42px;height:42px;border:1px solid #dedbea;border-radius:50%;background:white;color:var(--ink);font:400 30px/1 var(--sans);place-items:center}
+.card-close:hover{background:#eeedf8;transform:rotate(90deg)}
+.mcq-card.is-expanded{position:absolute;z-index:31;inset:38px 58px 50px;min-height:0;margin:0;padding:36px 46px 31px;border:1px solid #dedbea;border-top:5px solid var(--cobalt);border-radius:22px;cursor:default;overflow:auto;transform:none!important;box-shadow:0 30px 80px -24px #1d193d85}
+.mcq-card.is-expanded .card-close{display:grid}
+.mcq-card.is-expanded .mcq-sentence{min-height:0;margin-top:5px;padding:0 60px 22px 0;font-size:29px;line-height:2}
+.mcq-card.is-expanded .choice-groups{grid-template-columns:1fr 1fr;gap:20px;margin-top:21px}
+.mcq-card.is-expanded .choice-group{grid-template-columns:32px minmax(0,1fr);gap:8px;font-size:21px;line-height:1.75}
+.mcq-card.is-expanded .choice-grid{gap:5px 18px}
+.mcq-card.is-expanded .mcq-answer{min-height:70px;margin-top:22px;font-size:19px}
+.mcq-card.is-expanded .mcq-answer .answer-value{padding:10px 13px}
+.mcq-card.is-expanded .item-meaning{margin-top:12px;padding:12px 14px;font-size:17px;line-height:1.45}
+body.card-modal-open{overflow:hidden}
+
 .practice-teorimasu .item-meaning{margin:7px 0 0;padding:7px 9px;font-size:12px;line-height:1.3;background:#f5f4fa}
 
 .closing{background:var(--cobalt);color:white}
@@ -238,7 +254,7 @@ mark{color:white;background:var(--cobalt);border-radius:4px;padding:0 3px;box-de
   .deck-controls{height:78px;gap:8px;position:sticky;bottom:0;z-index:5;background:#f5f5faf2;backdrop-filter:blur(15px);margin:0 -16px;padding:0 16px}.keyboard-hint{display:none}.slide-nav{gap:1px}.slide-nav button{padding:9px 10px;font-size:11px;min-width:30px;min-height:36px}.slide-nav button.current{padding-left:12px;padding-right:12px}.nav-title{display:none!important}.arrow-controls{min-width:0;gap:8px}.icon-button{width:35px;height:35px}
 }
 @media(max-width:900px){
-  .practice-heading{display:flex;align-items:center}.practice-heading h2,.practice-teorimasu .practice-heading h2{font-size:36px}.practice-topic,.practice-teorimasu .practice-topic{min-height:34px;padding:5px 12px;font-size:16px}.practice-instruction,.practice-teorimasu .practice-instruction{margin-top:8px;font-size:13px}.practice-sheet{margin-top:14px}.exercise-row{grid-template-columns:28px minmax(0,1fr)}.exercise-number{padding-top:20px}.exercise-line{font-size:19px}.answer-slot{min-width:142px;height:32px;vertical-align:-7px}.item-meaning{font-size:13px}.mcq-grid{grid-template-columns:1fr}.mcq-card{min-height:0}.mcq-sentence{min-height:0;font-size:16px}.practice-teorimasu .item-meaning{font-size:13px}.practice .slide-bottom{left:25px;right:25px}
+  .practice-heading{display:flex;align-items:center}.practice-heading h2,.practice-teorimasu .practice-heading h2{font-size:36px}.practice-topic,.practice-teorimasu .practice-topic{min-height:34px;padding:5px 12px;font-size:16px}.practice-instruction,.practice-teorimasu .practice-instruction{margin-top:8px;font-size:13px}.practice-sheet{margin-top:14px}.exercise-row{grid-template-columns:28px minmax(0,1fr)}.exercise-number{padding-top:20px}.exercise-line{font-size:19px}.answer-slot{min-width:142px;height:32px;vertical-align:-7px}.item-meaning{font-size:13px}.mcq-grid{grid-template-columns:1fr}.mcq-card{min-height:0}.mcq-sentence{min-height:0;font-size:16px}.practice-teorimasu .item-meaning{font-size:13px}.card-backdrop{position:fixed;z-index:90}.mcq-card.is-expanded{position:fixed;z-index:91;inset:18px;padding:28px 22px 24px;max-height:calc(100dvh - 36px)}.mcq-card.is-expanded .mcq-sentence{padding-right:42px;font-size:20px;line-height:1.9}.mcq-card.is-expanded .choice-groups{grid-template-columns:1fr;gap:10px}.mcq-card.is-expanded .choice-group{font-size:17px}.mcq-card.is-expanded .mcq-answer{font-size:15px}.mcq-card.is-expanded .item-meaning{font-size:14px}.practice .slide-bottom{left:25px;right:25px}
 }
 @media(max-width:540px){.example-grid{grid-template-columns:minmax(0,1fr)}.example-card{min-height:0;padding:20px}.jp-sentence{font-size:clamp(19px,5vw,22px);white-space:normal}.formula-equation>span:first-child{font-size:15px}.formula-equation strong{font-size:21px}.noun-equation>span:first-child{font-size:14px}.noun-equation strong{font-size:18px}.formula-equation{gap:7px}}
 @media(max-width:370px){.app{padding:0 10px}.app-header{gap:8px}.brand{font-size:21px}.header-actions{gap:4px}.cover-left{padding-left:21px;padding-right:18px}.cover h1{font-size:30px;letter-spacing:-1.8px}.cover h1 .tilde{width:25px;font-size:21px}.slide{padding-left:18px;padding-right:18px}.cover{padding:0}.practice{padding:24px 18px 68px}.practice-sheet{padding-left:14px;padding-right:14px}.exercise-line{font-size:18px}.answer-slot{min-width:112px}.answer-slot.wide{min-width:156px}.formula-panel{padding-left:13px;padding-right:13px}.noun-equation strong{font-size:16px}.noun-equation>span:first-child{font-size:13px}.deck-controls{margin:0 -10px;padding:0 10px}.arrow-controls{gap:5px}.slide-nav button{padding:8px;min-width:28px}.closing h2{font-size:85px}.closing h2>span{font-size:59px}}
