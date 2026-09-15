@@ -157,7 +157,7 @@ mark{color:white;background:var(--cobalt);border-radius:4px;padding:0 3px;box-de
 .answer-slot{display:inline-grid;align-items:center;vertical-align:-8px;min-width:216px;height:42px;margin:0 4px;border-bottom:1.5px solid #aaa3bd}
 .answer-value{display:inline-block;width:max-content;max-width:100%;color:var(--ink);background:var(--citron);padding:2px 8px;line-height:1.35;border-radius:5px;box-shadow:inset 0 -2px 0 #c4cf8d}
 .answer-value[hidden],.meaning-reveal[hidden]{display:none!important}
-.practice.answers-visible .answer-value{animation:answer-fade .62s ease both;animation-delay:calc(var(--answer-index) * 150ms)}
+.answer-value.answer-revealing{animation:answer-fade .62s ease both}
 @keyframes answer-fade{from{opacity:0}to{opacity:1}}
 .answer-key{display:flex;align-items:center;justify-content:flex-end;gap:11px;min-height:38px;padding-top:8px;color:var(--muted);font-size:13px}
 .answer-key-icon{width:24px;height:24px;display:grid;place-items:center;border:1px solid #d2cee0;border-radius:50%;color:var(--cobalt);transition:transform .3s,background .3s}
@@ -168,7 +168,12 @@ mark{color:white;background:var(--cobalt);border-radius:4px;padding:0 3px;box-de
 .practice-meanings>strong{color:var(--ink);font-size:15px}
 .practice-meanings ol{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px 22px;margin:0;padding-left:21px}
 .practice.meanings-visible .practice-meanings{animation:meaning-scroll-down .68s cubic-bezier(.2,.8,.2,1) both}
+.meaning-reveal li.meaning-revealing{animation:meaning-item-down .5s cubic-bezier(.2,.8,.2,1) both}
 @keyframes meaning-scroll-down{from{opacity:0;transform:translateY(-24px);clip-path:inset(0 0 100% 0)}to{opacity:1;transform:none;clip-path:inset(0)}}
+@keyframes meaning-item-down{from{opacity:0;transform:translateY(-14px)}to{opacity:1;transform:none}}
+.exercise-row,.mcq-card{transition:background .25s,box-shadow .25s,transform .25s}
+.exercise-row.practice-item-current{background:#f8f7fc;box-shadow:inset 4px 0 0 #c4d06f}
+.mcq-card.practice-item-current{transform:translateY(-2px);box-shadow:0 16px 30px -22px #4444de70}
 .practice .slide-bottom{left:52px;right:52px}
 .practice-teorimasu{padding-top:27px}
 .practice-teorimasu .practice-heading h2{font-size:43px}
