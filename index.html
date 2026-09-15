@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#ECECF6">
+  <meta name="description" content="Presentasi interaktif bunpou ～ております dan ～でございます oleh Faiz Syihab, NIM 125241046, Kelas A.">
+  <title>Bunpou — Faiz Syihab</title>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <svg class="svg-library" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <defs>
+      <linearGradient id="fold-light" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#F2ECFF"/><stop offset="1" stop-color="#AD96E0"/></linearGradient>
+      <linearGradient id="fold-dark" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#AA8ADB"/><stop offset="1" stop-color="#7453B3"/></linearGradient>
+      <g id="petal"><path d="M0 0 L-44 -119 Q-48 -156 0 -198 L29 -91 Z" fill="url(#fold-light)"/><path d="M0 0 L0 -198 L48 -147 Q60 -121 29 -91 Z" fill="url(#fold-dark)"/><path d="M0 0 L0 -194" stroke="#F2E9FF" stroke-width="1.1" opacity=".7"/></g>
+      <symbol id="paper-flower" viewBox="0 0 500 500"><g transform="translate(250 250)"><use href="#petal"/><use href="#petal" transform="rotate(30)"/><use href="#petal" transform="rotate(60)"/><use href="#petal" transform="rotate(90)"/><use href="#petal" transform="rotate(120)"/><use href="#petal" transform="rotate(150)"/><use href="#petal" transform="rotate(180)"/><use href="#petal" transform="rotate(210)"/><use href="#petal" transform="rotate(240)"/><use href="#petal" transform="rotate(270)"/><use href="#petal" transform="rotate(300)"/><use href="#petal" transform="rotate(330)"/><circle r="9" fill="#E9DAF9"/><circle r="3" fill="#7D5AAE"/></g></symbol>
+      <symbol id="arrow-right" viewBox="0 0 24 24"><path d="M4 12h15m-6-6 6 6-6 6"/></symbol>
+      <symbol id="arrow-left" viewBox="0 0 24 24"><path d="M20 12H5m6-6-6 6 6 6"/></symbol>
+      <symbol id="expand" viewBox="0 0 24 24"><path d="M8 4H4v4m12-4h4v4M4 16v4h4m12-4v4h-4"/></symbol>
+      <symbol id="check" viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></symbol>
+    </defs>
+  </svg>
+  <a class="skip-link" href="#slide-1">Langsung ke slide</a>
+  <div class="app">
+    <header class="app-header">
+      <a class="brand" href="#slide-1" aria-label="Bunpou, kembali ke sampul"><span class="brand-mark" lang="ja">文</span><span>Bunpou<span class="brand-dot">.</span></span></a>
+      <div class="header-actions"><button class="icon-button" id="fullscreen-button" aria-label="Masuk layar penuh" title="Layar penuh (F)"><svg><use href="#expand"/></svg></button></div>
+    </header>
+
+    <main class="stage" aria-label="Presentasi bunpou, 6 slide">
+      <div class="slides">
+        <section class="slide cover active" id="slide-1" aria-labelledby="cover-title" tabindex="-1" data-title="Pembuka">
+          <div class="cover-left">
+            <div class="cover-label"><span lang="ja">日本語の文法</span></div>
+            <h1 id="cover-title" lang="ja"><span><span class="tilde">～</span>ております</span><span><span class="tilde">～</span>でございます</span></h1>
+            <div class="presenter"><div class="presenter-avatar" aria-hidden="true">FS</div><div><strong>Faiz Syihab</strong><div class="presenter-details"><span>NIM 125241046</span><span class="presenter-class">Kelas A</span></div></div></div>
+          </div>
+          <div class="cover-right">
+            <span class="vertical-type" lang="ja">ことばに、敬意を。</span>
+            <div class="flower-disc"><svg class="paper-flower cover-flower" aria-hidden="true"><use href="#paper-flower"/></svg></div>
+            <div class="art-caption"><span lang="ja">敬語</span><span>Cara kecil<br>menunjukkan hormat.</span></div>
+            <button class="start-button" data-go="1">Mari mulai <svg><use href="#arrow-right"/></svg></button>
+          </div>
+          <div class="slide-bottom"><span>Dua pola untuk situasi formal</span><span>01 / 06</span></div>
+        </section>
+
+        <section class="slide meaning" id="slide-2" aria-labelledby="meaning-title" tabindex="-1" data-title="Makna" hidden inert>
+          <div class="meaning-heading"><span class="section-kicker" id="meaning-title">Arti, makna & fungsi</span></div>
+          <div class="meaning-columns">
+            <article class="meaning-panel action-panel"><h3 lang="ja">～ております</h3><p class="meaning-translation">“Sedang …” / “dalam keadaan …”</p><p>Bentuk lebih formal dari <span lang="ja">～ています</span>. Bisa menyatakan kegiatan yang berlangsung, kebiasaan, atau keadaan yang berlanjut.</p><div class="panel-function"><span>Fungsi</span><p>Menyampaikan kegiatan atau keadaan diri / pihak sendiri secara santun kepada lawan bicara.</p></div><span class="type-tag"><span lang="ja">謙譲語Ⅱ（丁重語）</span> <span>Bahasa merendah yang santun</span></span></article>
+            <article class="meaning-panel identity-panel"><h3 lang="ja">～でございます</h3><p class="meaning-translation">“Adalah …” / “… (sangat sopan)”</p><p>Bentuk lebih formal dari <span lang="ja">～です</span>. Menjelaskan identitas, status, atau sifat dengan nada sangat sopan.</p><div class="panel-function"><span>Fungsi</span><p>Memberi informasi atau memperkenalkan diri, terutama dalam pelayanan dan situasi resmi.</p></div><span class="type-tag"><span lang="ja">丁寧語</span> <span>Bahasa sopan</span></span></article>
+          </div>
+          <div class="slide-bottom page-only"><span>02 / 06</span></div>
+        </section>
+
+        <section class="slide formula" id="slide-3" aria-labelledby="formula-title" tabindex="-1" data-title="Rumus" hidden inert>
+          <div class="section-heading"><div><span class="section-kicker">Cara menggunakan</span><h2 id="formula-title">Kenali bentuknya.<br>Rangkai kalimatnya.</h2></div><span class="heading-jp" lang="ja" aria-hidden="true">かたち</span></div>
+          <div class="formula-columns">
+            <article class="formula-panel"><h3><span class="small-dot cobalt"></span>Untuk kata kerja</h3><div class="formula-equation"><span>V bentuk <b lang="ja">て</b></span><span class="math-plus">+</span><strong lang="ja">おります</strong></div><p class="formula-caption">Ubah kata kerja ke bentuk <span lang="ja">て</span>, lalu tambahkan <span lang="ja">おります</span>.</p><div class="transformation" lang="ja"><div><span>働く</span><small>Bekerja</small></div><svg><use href="#arrow-right"/></svg><div><span>働いて</span><small>Bentuk て</small></div><svg><use href="#arrow-right"/></svg><div class="result"><span>働いております</span><small>Bekerja (formal)</small></div></div><div class="formula-note"><strong>Jika bentuknya berakhir <span lang="ja">で</span>:</strong><p lang="ja">読む → 読んで → 読んでおります</p><span>Tetap tambah <span lang="ja">おります</span>, bukan <span lang="ja">ございます</span>.</span></div></article>
+            <article class="formula-panel"><h3><span class="small-dot citron"></span>Untuk kata benda & kata sifat な</h3><div class="formula-equation noun-equation"><span>N / Adj-<b lang="ja">な</b></span><span class="math-plus">+</span><strong lang="ja">でございます</strong></div><p class="formula-caption">Tempelkan langsung. Kata sifat <span lang="ja">な</span> tidak memakai <span lang="ja">な</span>.</p><div class="noun-examples"><div><span lang="ja">学生</span><svg><use href="#arrow-right"/></svg><strong lang="ja">学生でございます</strong></div><div><span lang="ja">静か</span><svg><use href="#arrow-right"/></svg><strong lang="ja">静かでございます</strong></div></div><div class="formula-note"><strong>Perhatikan jenis katanya.</strong><p>Jangan langsung menambahkan pola ini ke kata kerja atau kata sifat <span lang="ja">い</span>.</p><span>Bentuk kata sifat <span lang="ja">い</span> memerlukan perubahan khusus.</span></div></article>
+          </div>
+          <div class="summary-strip"><span lang="ja">ています → ております</span><span>Kenali kata sebelum akhiran.</span><span lang="ja">です → でございます</span></div>
+          <div class="slide-bottom"><span>V = kata kerja · N = kata benda · Adj = kata sifat</span><span>03 / 06</span></div>
+        </section>
+
+        <section class="slide examples" id="slide-4" aria-labelledby="examples-title" tabindex="-1" data-title="Contoh" hidden inert>
+          <div class="examples-intro"><span class="section-kicker">Contoh kalimat</span><h2 id="examples-title">Dari rumus<br>ke percakapan.</h2><p>Perhatikan siapa yang berbicara<br> dan informasi yang disampaikan.</p><div class="example-legend"><span><i class="small-dot cobalt"></i><span lang="ja">ております</span></span><span><i class="small-dot citron"></i><span lang="ja">でございます</span></span></div><div class="quote-mark" aria-hidden="true">“</div><p class="intro-footnote">Baca kalimat Jepang,<br>lalu hubungkan dengan konteksnya.</p></div>
+          <div class="example-grid">
+            <article class="example-card example-action"><span class="context-label">Memperkenalkan pekerjaan</span><p class="jp-sentence" lang="ja">私は銀行で<br>働い<mark>ております</mark>。</p><p class="romaji">Watashi wa ginkō de hataraite orimasu.</p><p class="translation">Saya bekerja di bank.</p><span class="example-context">Pekerjaan diri sendiri</span></article>
+            <article class="example-card example-identity"><span class="context-label">Memperkenalkan diri</span><p class="jp-sentence" lang="ja">私はファイズ<br><mark>でございます</mark>。</p><p class="romaji">Watashi wa Faizu de gozaimasu.</p><p class="translation">Saya Faiz.</p><span class="example-context">Identitas dalam situasi formal</span></article>
+            <article class="example-card example-action"><span class="context-label">Menyampaikan kegiatan saat ini</span><p class="jp-sentence" lang="ja">ただいま、資料を<br>確認し<mark>ております</mark>。</p><p class="romaji">Tadaima, shiryō o kakunin shite orimasu.</p><p class="translation">Saat ini, saya sedang memeriksa dokumen.</p><span class="example-context">Kegiatan yang sedang berlangsung</span></article>
+            <article class="example-card example-identity"><span class="context-label">Melayani tamu</span><p class="jp-sentence" lang="ja">こちらは会議室<br><mark>でございます</mark>。</p><p class="romaji">Kochira wa kaigishitsu de gozaimasu.</p><p class="translation">Ini adalah ruang rapat.</p><span class="example-context">Memberikan informasi</span></article>
+          </div>
+          <div class="slide-bottom"><span>Situasi berubah. Kesopanan tetap.</span><span>04 / 06</span></div>
+        </section>
+
+        <section class="slide practice" id="slide-5" aria-labelledby="practice-title" tabindex="-1" data-title="Latihan" hidden inert>
+          <div class="practice-heading">
+            <div><span class="section-kicker">Latihan</span><h2 id="practice-title" lang="ja">練習しましょう。</h2></div>
+            <div class="practice-instruction"><span>Ubah ke bentuk yang lebih formal.</span><p>Isi bagian setelah tanda panah dengan <span lang="ja">～ております</span> atau <span lang="ja">～でございます</span>.</p></div>
+          </div>
+          <div class="practice-sheet">
+            <ol class="exercise-list">
+              <li class="exercise-row">
+                <span class="exercise-number">1.</span>
+                <p class="exercise-line" lang="ja">私はファイズ<span class="conversion">（です <i>→</i> <span class="answer-slot"><span class="answer-value" style="--answer-index:0" hidden>でございます</span></span>）</span>。</p>
+              </li>
+              <li class="exercise-row">
+                <span class="exercise-number">2.</span>
+                <p class="exercise-line" lang="ja">こちらは会議室<span class="conversion">（です <i>→</i> <span class="answer-slot"><span class="answer-value" style="--answer-index:1" hidden>でございます</span></span>）</span>。</p>
+              </li>
+              <li class="exercise-row">
+                <span class="exercise-number">3.</span>
+                <p class="exercise-line" lang="ja">私は日本語を<span class="conversion">（勉強しています <i>→</i> <span class="answer-slot wide"><span class="answer-value" style="--answer-index:2" hidden>勉強しております</span></span>）</span>。</p>
+              </li>
+              <li class="exercise-row exercise-row-long">
+                <span class="exercise-number">4.</span>
+                <p class="exercise-line" lang="ja">私は田中<span class="conversion">（です <i>→</i> <span class="answer-slot"><span class="answer-value" style="--answer-index:3" hidden>でございます</span></span>）</span>。<br>ただいま、お客様を<span class="conversion">（待っています <i>→</i> <span class="answer-slot wide"><span class="answer-value" style="--answer-index:4" hidden>待っております</span></span>）</span>。</p>
+              </li>
+            </ol>
+            <div class="answer-key" aria-live="polite"><span class="answer-key-icon" aria-hidden="true">→</span><span id="practice-status">Tekan next untuk menampilkan jawaban.</span></div>
+          </div>
+          <div class="slide-bottom"><span>Cermati bentuk kata sebelum tanda panah.</span><span>05 / 06</span></div>
+        </section>
+
+        <section class="slide closing" id="slide-6" aria-labelledby="closing-title" tabindex="-1" data-title="Penutup" hidden inert>
+          <div class="closing-top"><span lang="ja">ことばに、敬意を。</span><span>Sampai di sini, selangkah lebih santun.</span></div><svg class="paper-flower closing-flower" aria-hidden="true"><use href="#paper-flower"/></svg><div class="closing-copy"><span class="closing-jp" lang="ja">ありがとうございました。</span><h2 id="closing-title">Terima<br>kasih<span>。</span></h2><p>Untuk waktu dan perhatiannya.</p></div><div class="closing-signature"><strong>Faiz Syihab</strong><span>NIM 125241046 <span class="signature-divider">/</span> Kelas A</span></div><button class="restart-button" data-go="0">Kembali ke awal <svg><use href="#arrow-left"/></svg></button><div class="slide-bottom"><span lang="ja">～ております & ～でございます</span><span>06 / 06</span></div>
+        </section>
+      </div>
+    </main>
+
+    <footer class="deck-controls" aria-label="Kontrol presentasi"><div class="keyboard-hint"><span class="key-mini">←</span><span class="key-mini">→</span><span>untuk berpindah</span></div><nav class="slide-nav" aria-label="Pilih slide"><button data-go="0" class="current" aria-current="step" aria-label="Slide 1: Pembuka"><span class="nav-number">01</span><span class="nav-title">Pembuka</span></button><button data-go="1" aria-label="Slide 2: Makna"><span class="nav-number">02</span><span class="nav-title">Makna</span></button><button data-go="2" aria-label="Slide 3: Rumus"><span class="nav-number">03</span><span class="nav-title">Rumus</span></button><button data-go="3" aria-label="Slide 4: Contoh"><span class="nav-number">04</span><span class="nav-title">Contoh</span></button><button data-go="4" aria-label="Slide 5: Latihan"><span class="nav-number">05</span><span class="nav-title">Latihan</span></button><button data-go="5" aria-label="Slide 6: Penutup"><span class="nav-number">06</span><span class="nav-title">Penutup</span></button></nav><div class="arrow-controls"><button class="icon-button previous" aria-label="Slide sebelumnya" disabled><svg><use href="#arrow-left"/></svg></button><button class="icon-button next" aria-label="Slide berikutnya"><svg><use href="#arrow-right"/></svg></button></div></footer>
+  </div>
+
+  <div class="sr-only" id="slide-announcer" aria-live="polite" aria-atomic="true"></div>
+  <div class="toast" id="toast" role="status" hidden></div>
+  <noscript><style>.slide{display:block!important;position:relative!important;transform:none!important;width:100%!important;height:auto!important;min-height:700px;margin-bottom:24px}.stage,.slides{height:auto!important;aspect-ratio:auto!important;width:100%!important;overflow:visible!important}.deck-controls,.start-button{display:none!important}.app{padding:20px}.slide[hidden]{display:block!important}</style><p class="noscript-note">JavaScript nonaktif. Semua slide ditampilkan berurutan; latihan tersedia tanpa animasi jawaban.</p></noscript>
+</body>
+</html>
