@@ -80,6 +80,7 @@
       meaning.hidden = true;
       meaning.classList.remove('meaning-revealing');
     });
+    practiceItems(slide).forEach(item => item.classList.remove('furigana-visible'));
     focusPracticeItem(slide, 0);
     updatePracticeStatus(slide);
     if (announce) announcer.textContent = 'Jawaban dan arti latihan disembunyikan.';
@@ -95,6 +96,9 @@
     answers.forEach(item => item.classList.remove('answer-revealing'));
     answer.hidden = false;
     answer.closest('.answer-slot')?.classList.add('is-filled');
+    if (slide.classList.contains('practice-teorimasu')) {
+      practiceItems(slide)[index]?.classList.add('furigana-visible');
+    }
     void answer.offsetWidth;
     answer.classList.add('answer-revealing');
     slide.classList.add('answers-visible');
@@ -139,6 +143,9 @@
       answers[index].hidden = true;
       answers[index].classList.remove('answer-revealing');
       answers[index].closest('.answer-slot')?.classList.remove('is-filled');
+      if (slide.classList.contains('practice-teorimasu')) {
+        practiceItems(slide)[index]?.classList.remove('furigana-visible');
+      }
       if (!answers.some(answer => !answer.hidden)) slide.classList.remove('answers-visible');
       announcer.textContent = 'Jawaban nomor ' + (index + 1) + ' disembunyikan.';
     }
