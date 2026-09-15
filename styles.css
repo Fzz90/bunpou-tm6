@@ -139,29 +139,60 @@ h2{font-size:52px;line-height:1.05;font-weight:600;letter-spacing:-1.8px}
 mark{color:white;background:var(--cobalt);border-radius:4px;padding:0 3px;box-decoration-break:clone;-webkit-box-decoration-break:clone}
 .example-identity mark{color:var(--ink);background:var(--citron)}
 .translation{font-size:16px;line-height:1.35;margin-top:9px;font-weight:450;color:var(--muted)}
-.practice{padding:46px 60px 62px;background:var(--lavender)}
+.practice{padding:34px 52px 58px;background:var(--lavender)}
 .practice[hidden]{display:none!important}
-.practice-heading{display:block}
-.practice-heading h2{font-size:58px;line-height:1.12;letter-spacing:0;font-weight:500}
-.practice-sheet{background:white;border-radius:20px;margin-top:29px;padding:17px 36px 20px;box-shadow:0 16px 35px -30px #282248}
+.practice-heading{display:flex;align-items:center;justify-content:space-between;gap:24px}
+.practice-heading h2{font-size:48px;line-height:1.12;letter-spacing:0;font-weight:500}
+.practice-topic{display:inline-flex;align-items:center;justify-content:center;min-height:43px;padding:6px 18px;border-radius:24px;font-size:23px;font-weight:700;white-space:nowrap}
+.practice-topic-gozaimasu{background:var(--citron);color:#566515}
+.practice-topic-orimasu{background:#deddff;color:var(--cobalt)}
+.practice-instruction{margin-top:5px;color:var(--muted);font-size:15px}
+.practice-sheet{background:white;border-radius:19px;margin-top:15px;padding:7px 28px 14px;box-shadow:0 16px 35px -30px #282248}
 .exercise-list{list-style:none;margin:0;padding:0}
-.exercise-row{display:grid;grid-template-columns:58px minmax(0,1fr);align-items:center;min-height:100px;border-bottom:1px solid #e9e7f0}
-.exercise-row-long{min-height:153px}
-.exercise-number{font-family:var(--jp);font-size:26px;color:var(--cobalt);align-self:start;padding-top:31px;font-variant-numeric:tabular-nums}
-.exercise-line{font-size:29px;line-height:1.75;letter-spacing:.2px}
-.conversion{white-space:nowrap}
-.conversion i{font-style:normal;color:var(--cobalt);padding:0 7px}
-.answer-slot{display:inline-grid;align-items:center;vertical-align:-8px;min-width:220px;height:43px;margin:0 3px;border-bottom:1.5px solid #aaa3bd}
-.answer-slot.wide{min-width:286px}
-.answer-value{display:inline-block;width:max-content;max-width:100%;color:var(--ink);background:var(--citron);padding:0 8px;line-height:1.35;border-radius:4px;box-shadow:inset 0 -2px 0 #c4cf8d}
-.answer-value[hidden]{display:none}
-.practice.answers-visible .answer-value{animation:answer-reveal .58s cubic-bezier(.2,.76,.2,1) both;animation-delay:calc(var(--answer-index) * 140ms)}
-@keyframes answer-reveal{0%{opacity:0;clip-path:inset(0 100% 0 0);transform:translateY(7px)}100%{opacity:1;clip-path:inset(0);transform:none}}
-.answer-key{display:flex;align-items:center;justify-content:flex-end;gap:11px;min-height:42px;padding-top:13px;color:var(--muted);font-size:14px}
-.answer-key-icon{width:25px;height:25px;display:grid;place-items:center;border:1px solid #d2cee0;border-radius:50%;color:var(--cobalt);transition:transform .3s,background .3s}
+.exercise-row{display:grid;grid-template-columns:46px minmax(0,1fr);align-items:center;min-height:88px;border-bottom:1px solid #e9e7f0}
+.exercise-number{font-family:var(--jp);font-size:22px;color:#65731f;align-self:start;padding-top:29px;font-variant-numeric:tabular-nums}
+.exercise-line{font-size:27px;line-height:1.85;letter-spacing:.1px}
+.exercise-line ruby,.mcq-sentence ruby,.choice-grid ruby,.mcq-answer ruby{ruby-position:over}
+.exercise-line rt,.mcq-sentence rt,.choice-grid rt,.mcq-answer rt{font-size:.46em;font-weight:400;letter-spacing:0;color:#777089}
+.answer-slot{display:inline-grid;align-items:center;vertical-align:-8px;min-width:216px;height:42px;margin:0 4px;border-bottom:1.5px solid #aaa3bd}
+.answer-value{display:inline-block;width:max-content;max-width:100%;color:var(--ink);background:var(--citron);padding:2px 8px;line-height:1.35;border-radius:5px;box-shadow:inset 0 -2px 0 #c4cf8d}
+.answer-value[hidden],.meaning-reveal[hidden]{display:none!important}
+.practice.answers-visible .answer-value{animation:answer-fade .62s ease both;animation-delay:calc(var(--answer-index) * 150ms)}
+@keyframes answer-fade{from{opacity:0}to{opacity:1}}
+.answer-key{display:flex;align-items:center;justify-content:flex-end;gap:11px;min-height:38px;padding-top:8px;color:var(--muted);font-size:13px}
+.answer-key-icon{width:24px;height:24px;display:grid;place-items:center;border:1px solid #d2cee0;border-radius:50%;color:var(--cobalt);transition:transform .3s,background .3s}
 .practice.answers-visible .answer-key{color:var(--cobalt)}
 .practice.answers-visible .answer-key-icon{transform:rotate(360deg);background:var(--citron);border-color:var(--citron)}
-.practice .slide-bottom{left:60px;right:60px}
+.practice.meanings-visible .answer-key{color:#566515}
+.practice-meanings{display:grid;grid-template-columns:auto minmax(0,1fr);gap:15px;margin-top:8px;padding:12px 16px;border:1px solid #dcd8e8;border-radius:12px;background:#f5f4fa;color:var(--muted);font-size:14px;line-height:1.35;transform-origin:top}
+.practice-meanings>strong{color:var(--ink);font-size:15px}
+.practice-meanings ol{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px 22px;margin:0;padding-left:21px}
+.practice.meanings-visible .practice-meanings{animation:meaning-scroll-down .68s cubic-bezier(.2,.8,.2,1) both}
+@keyframes meaning-scroll-down{from{opacity:0;transform:translateY(-24px);clip-path:inset(0 0 100% 0)}to{opacity:1;transform:none;clip-path:inset(0)}}
+.practice .slide-bottom{left:52px;right:52px}
+.practice-teorimasu{padding-top:27px}
+.practice-teorimasu .practice-heading h2{font-size:43px}
+.practice-teorimasu .practice-topic{min-height:39px;font-size:21px}
+.practice-teorimasu .practice-instruction{font-size:14px;margin-top:3px}
+.mcq-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-top:12px}
+.mcq-card{min-width:0;min-height:398px;padding:15px 16px 13px;border-radius:16px;background:white;border-top:4px solid var(--cobalt);box-shadow:0 14px 28px -27px #282248;display:flex;flex-direction:column}
+.mcq-card-heading{display:flex;align-items:center;gap:10px}
+.mcq-card-heading>span{width:27px;height:27px;border-radius:50%;display:grid;place-items:center;background:#deddff;color:var(--cobalt);font:700 15px var(--jp)}
+.mcq-card-heading h3{font-size:15px;font-weight:650}
+.mcq-card-heading small{display:block;margin-top:1px;color:var(--muted);font-size:11px;font-weight:450}
+.mcq-sentence{min-height:110px;margin-top:11px;padding-bottom:10px;border-bottom:1px solid #ebe8f1;font-size:17px;line-height:1.85;font-weight:500;letter-spacing:-.2px}
+.choice-groups{display:grid;gap:7px;margin-top:8px}
+.choice-group{display:grid;grid-template-columns:22px minmax(0,1fr);gap:4px;font-size:14px;line-height:1.55}
+.choice-group>b{color:var(--cobalt)}
+.choice-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1px 8px}
+.choice-grid>span{white-space:nowrap}
+.mcq-answer{display:flex;align-items:flex-end;min-height:47px;margin-top:auto;font-size:13px;line-height:1.55}
+.mcq-answer .answer-value{display:block;width:100%;max-width:none;padding:5px 7px;background:#deddff;color:var(--cobalt);box-shadow:inset 0 -2px 0 #b7b6ef;font-weight:650}
+.practice-teorimasu>.answer-key{min-height:31px;padding-top:5px}
+.practice-teorimasu .practice-meanings{margin-top:5px;padding:9px 14px;font-size:12.5px;line-height:1.3}
+.practice-teorimasu .practice-meanings>strong{font-size:14px}
+.practice-teorimasu .practice-meanings ol{gap:10px 18px}
+
 .closing{background:var(--cobalt);color:white}
 .closing-top{display:flex;align-items:center;justify-content:space-between;font-size:15px;color:#dddafa}
 .closing-top>[lang=ja]{letter-spacing:2px;font-size:18px}
@@ -206,6 +237,9 @@ mark{color:white;background:var(--cobalt);border-radius:4px;padding:0 3px;box-de
   .practice{display:block!important;padding:28px 25px 70px}.practice-heading{display:block}.practice-heading h2{font-size:39px;margin-top:3px}.practice-sheet{margin-top:20px;padding:6px 16px 12px;border-radius:15px}.exercise-row{grid-template-columns:30px minmax(0,1fr);align-items:start;min-height:0;padding:16px 0}.exercise-row-long{padding-bottom:18px}.exercise-number{font-size:17px;padding-top:4px}.exercise-line{font-size:19px;line-height:1.7}.conversion{display:block;white-space:normal;margin-top:4px}.answer-slot{min-width:126px;height:33px;vertical-align:-7px;margin-left:2px}.answer-slot.wide{min-width:174px}.answer-value{padding:0 5px}.answer-key{justify-content:flex-start;font-size:12px;padding-top:10px}.answer-key-icon{width:22px;height:22px}.practice .slide-bottom{left:25px;right:25px}
   .closing{min-height:770px}.closing-top{font-size:11px;align-items:flex-start;gap:30px}.closing-top>[lang=ja]{font-size:13px;letter-spacing:1px;white-space:nowrap}.closing-top>span:last-child{max-width:160px;text-align:right}.closing-copy{margin-top:61px}.closing-jp{font-size:18px;letter-spacing:.5px}.closing h2{font-size:93px;letter-spacing:-4px;margin-top:22px;line-height:1}.closing h2>span{font-size:68px;vertical-align:9px;margin-left:0}.closing-copy>p{font-size:17px;margin-top:22px}.closing-flower{width:360px;height:360px;right:-80px;top:313px}.closing-signature{left:29px;bottom:126px;gap:8px;align-items:flex-start;flex-direction:column;font-size:12px}.closing-signature strong{font-size:17px}.restart-button{left:28px;right:auto;bottom:65px;padding:11px 17px;font-size:12px;gap:18px}.restart-button svg{width:18px}.closing .slide-bottom{font-size:10px}
   .deck-controls{height:78px;gap:8px;position:sticky;bottom:0;z-index:5;background:#f5f5faf2;backdrop-filter:blur(15px);margin:0 -16px;padding:0 16px}.keyboard-hint{display:none}.slide-nav{gap:1px}.slide-nav button{padding:9px 10px;font-size:11px;min-width:30px;min-height:36px}.slide-nav button.current{padding-left:12px;padding-right:12px}.nav-title{display:none!important}.arrow-controls{min-width:0;gap:8px}.icon-button{width:35px;height:35px}
+}
+@media(max-width:900px){
+  .practice-heading{display:flex;align-items:center}.practice-heading h2,.practice-teorimasu .practice-heading h2{font-size:36px}.practice-topic,.practice-teorimasu .practice-topic{min-height:34px;padding:5px 12px;font-size:16px}.practice-instruction,.practice-teorimasu .practice-instruction{margin-top:8px;font-size:13px}.practice-sheet{margin-top:14px}.exercise-row{grid-template-columns:28px minmax(0,1fr)}.exercise-number{padding-top:20px}.exercise-line{font-size:19px}.answer-slot{min-width:142px;height:32px;vertical-align:-7px}.practice-meanings{grid-template-columns:1fr;font-size:13px}.practice-meanings ol{grid-template-columns:1fr;gap:7px}.mcq-grid{grid-template-columns:1fr}.mcq-card{min-height:0}.mcq-sentence{min-height:0;font-size:16px}.practice-teorimasu .practice-meanings ol{grid-template-columns:1fr}.practice .slide-bottom{left:25px;right:25px}
 }
 @media(max-width:540px){.example-grid{grid-template-columns:minmax(0,1fr)}.example-card{min-height:0;padding:20px}.jp-sentence{font-size:clamp(19px,5vw,22px);white-space:normal}.formula-equation>span:first-child{font-size:15px}.formula-equation strong{font-size:21px}.noun-equation>span:first-child{font-size:14px}.noun-equation strong{font-size:18px}.formula-equation{gap:7px}}
 @media(max-width:370px){.app{padding:0 10px}.app-header{gap:8px}.brand{font-size:21px}.header-actions{gap:4px}.cover-left{padding-left:21px;padding-right:18px}.cover h1{font-size:30px;letter-spacing:-1.8px}.cover h1 .tilde{width:25px;font-size:21px}.slide{padding-left:18px;padding-right:18px}.cover{padding:0}.practice{padding:24px 18px 68px}.practice-sheet{padding-left:14px;padding-right:14px}.exercise-line{font-size:18px}.answer-slot{min-width:112px}.answer-slot.wide{min-width:156px}.formula-panel{padding-left:13px;padding-right:13px}.noun-equation strong{font-size:16px}.noun-equation>span:first-child{font-size:13px}.deck-controls{margin:0 -10px;padding:0 10px}.arrow-controls{gap:5px}.slide-nav button{padding:8px;min-width:28px}.closing h2{font-size:85px}.closing h2>span{font-size:59px}}
