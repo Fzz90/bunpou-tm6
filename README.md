@@ -1,6 +1,6 @@
 # Bunpou — ～ております & ～でございます
 
-Presentasi web 6 slide untuk **Faiz Syihab · NIM 125241046 · Kelas A**.
+Presentasi web 7 slide untuk **Faiz Syihab · NIM 125241046 · Kelas A**.
 
 ## Buka presentasi
 
@@ -20,8 +20,9 @@ Kemudian buka `http://127.0.0.1:4173`.
 2. Arti, makna, fungsi, serta perbedaan penggunaan.
 3. Rumus kata kerja, kata benda, dan kata sifat な.
 4. Empat contoh dengan konteks, romaji, dan terjemahan Indonesia.
-5. Empat latihan transformasi bertahap, dengan lima jawaban yang muncul berurutan.
-6. Terima kasih.
+5. Tiga latihan konteks formal untuk ～でございます.
+6. Tiga latihan pilihan ganda bertingkat untuk ～ております.
+7. Terima kasih.
 
 ## Kontrol
 
@@ -34,9 +35,9 @@ Kemudian buka `http://127.0.0.1:4173`.
 
 ## PDF, nanti
 
-CSS cetak sudah disiapkan untuk **6 halaman 16:9, ukuran 320 × 180 mm**. Tidak ada PDF presentasi yang dibuat pada tahap ini.
+CSS cetak sudah disiapkan untuk **7 halaman 16:9, ukuran 320 × 180 mm**. Tidak ada PDF presentasi yang dibuat pada tahap ini.
 
-Ketika ekspor diminta nanti, gunakan print browser, simpan sebagai PDF, aktifkan background graphics, nonaktifkan header/footer browser, dan gunakan ukuran halaman CSS atau custom 320 × 180 mm. Empat latihan muncul bersama di halaman kelima. Jika jawaban sedang terbuka saat print dipanggil, jawabannya ikut tercetak. Periksa pratinjau cetak karena tiap browser dapat menangani ukuran halaman kustom secara berbeda.
+Ketika ekspor diminta nanti, gunakan print browser, simpan sebagai PDF, aktifkan background graphics, nonaktifkan header/footer browser, dan gunakan ukuran halaman CSS atau custom 320 × 180 mm. Latihan ～でございます dan ～ております menempati halaman kelima dan keenam. Jika jawaban sedang terbuka saat print dipanggil, jawabannya ikut tercetak. Periksa pratinjau cetak karena tiap browser dapat menangani ukuran halaman kustom secara berbeda.
 
 ## GitHub Pages
 
@@ -54,7 +55,7 @@ Situs berupa HTML/CSS/JavaScript statis dan diterbitkan dari root branch `main`.
 
 ## File
 
-- `index.html`: struktur dan isi enam slide.
+- `index.html`: struktur dan isi tujuh slide.
 - `styles.css`: desain, responsive layout, animasi, serta media print.
 - `app.js`: navigasi, fullscreen, dan latihan.
 - `assets/`: favicon; arsip font lokal lama tetap ada tetapi tidak lagi direferensikan.

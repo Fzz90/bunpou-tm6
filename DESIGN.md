@@ -1,7 +1,7 @@
 # Bunpou — design direction
 
 ## Brief
-Six presentation slides in Indonesian for Faiz Syihab, NIM 125241046, Kelas A. Teach ～ております and ～でございます, including meaning, construction, examples, and progressively demanding exercises. Prepare print styles now; PDF export remains a future action. Publish the static site through GitHub Pages from `Fzz90/bunpou-tm6`.
+Seven presentation slides in Indonesian for Faiz Syihab, NIM 125241046, Kelas A. Teach ～ております and ～でございます, including meaning, construction, examples, and progressively demanding exercises. Prepare print styles now; PDF export remains a future action. Publish the static site through GitHub Pages from `Fzz90/bunpou-tm6`.
 
 ## Visual system
 - Ink `#292743`: readable text and quiet controls.
@@ -19,7 +19,7 @@ Cover:    [ Japanese grammar title       ][ folded-paper rosette ]
 Meaning:  [ action panel                  | identity panel       ]
 Formula:  [ heading ][ verb construction  | noun / na-adjective  ]
 Examples: [ intro   ][ four contextual examples in two columns   ]
-Practice: [ large worksheet with four numbered transformation rows ]
+Practice: [ ～でございます worksheet ][ ～ております multiple choice ]
 Closing:  [ folded motif ][ thank-you statement ][ presenter      ]
 ```
 
@@ -27,8 +27,8 @@ Closing:  [ folded motif ][ thank-you statement ][ presenter      ]
 Use the Japanese grammar itself as the cover's visual anchor. Avoid dashboard cards, decorative gradients, stock temple imagery, and generic landing-page sections. The folded-paper rosette references deliberate care in presentation; repeated petals are one coherent illustration. Use distinct cobalt and citron fields to explain action vs. identity. Keep motion to the initial paper unfold, slide transitions, and responses to user actions. Do not continuously rotate the illustration.
 
 ## Interaction and print
-- Six slide buttons; previous/next; arrow keys; Home/End; F for fullscreen.
-- Four transformation rows progress from one noun pattern to a final sentence combining both patterns, without difficulty labels.
-- First next action reveals five answers in sequence; second next action advances to the closing slide. Previous hides the answers before leaving the worksheet.
+- Seven slide buttons; previous/next; arrow keys; Home/End; F for fullscreen.
+- Two exercise slides separate ～でございます transformations from progressively demanding ～ております multiple-choice questions.
+- First next action reveals the current exercise answers in sequence; second next action advances. Previous hides the answers before leaving the exercise.
 - Reduced-motion preference, semantic headings, visible focus, and labeled controls.
-- Print CSS shows all six slides at 320mm × 180mm, hides navigation and answer reveals, and prints every exercise. No PDF generated or repository published during this task.
+- Print CSS shows all seven slides at 320mm × 180mm, hides navigation, and preserves the current answer state. No PDF was generated during this task.
